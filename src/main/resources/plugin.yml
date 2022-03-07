@@ -1,0 +1,7 @@
+name: AliasShowText
+version: '${project.version}'
+main: com.itsmaxymoo.aliasshowtext.AliasShowText
+api-version: 1.18
+authors: [ itsmaxymoo ]
+description: Allow commands.yml aliases to show the user text
+website: https://github.com/itsmaxymoo/AliasShowText
