@@ -5,3 +5,8 @@ api-version: 1.18
 authors: [ itsmaxymoo ]
 description: Allow commands.yml aliases to show the user text
 website: https://github.com/itsmaxymoo/AliasShowText
+
+commands:
+  _showtext:
+    description: ""
+    usage: "Consult documentation"

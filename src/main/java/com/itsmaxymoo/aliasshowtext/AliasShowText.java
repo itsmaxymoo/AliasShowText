@@ -8,6 +8,7 @@ public final class AliasShowText extends JavaPlugin {
 	public void onEnable() {
 		// Plugin startup logic
 
+		getCommand("_showtext").setExecutor(new CommandShowText());
 	}
 
 	@Override
