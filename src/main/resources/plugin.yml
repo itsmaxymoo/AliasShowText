@@ -7,6 +7,18 @@ description: Allow commands.yml aliases to show the user text
 website: https://github.com/itsmaxymoo/AliasShowText
 
 commands:
+  aliasshowtext-reload:
+    description: "Reload AliasShowText strings"
+    usage: "Consult documentation"
+    permission: aliasshowtext.reload
   _showtext:
     description: ""
     usage: "Consult documentation"
+  _showstring:
+    description: ""
+    usage: "Consult documentation"
+
+permissions:
+  aliasshowtext.reload:
+    description: "Allow users to reload the config"
+    default: op

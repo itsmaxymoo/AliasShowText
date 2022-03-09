@@ -25,8 +25,8 @@ Of course, `_showtext` supports [standard Minecraft formatting codes](https://mi
 
 ## To-Do
 
-* Support for storing text strings in a seperate file
-	* Allow server operator to reload strings at runtime
+* ~~Support for storing text strings in a seperate file~~
+	* ~~Allow server operator to reload strings at runtime~~
 	* Allow text strings to support arguments
 * Support for special text functions
 * Support for special cases (ex: joining the server)
