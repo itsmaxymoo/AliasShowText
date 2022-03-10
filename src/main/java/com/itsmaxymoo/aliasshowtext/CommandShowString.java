@@ -7,19 +7,17 @@ import org.bukkit.command.CommandSender;
 public class CommandShowString implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		if(args.length > 0){
+		if (args.length > 0) {
 			ArgString aString = ConfigManager.getArgString(args[0]);
 
-			if(aString != null){
+			if (aString != null) {
 				sender.sendMessage(aString.getFormatted(args));
 
 				return true;
-			}
-			else{
+			} else {
 				return false;
 			}
-		}
-		else{
+		} else {
 			return false;
 		}
 	}

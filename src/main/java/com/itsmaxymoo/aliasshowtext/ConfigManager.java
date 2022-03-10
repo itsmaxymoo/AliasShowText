@@ -8,7 +8,7 @@ public class ConfigManager {
 	private static JavaPlugin pluginInstance;
 	private static HashMap<String, ArgString> mapArgStrings = new HashMap<>();
 
-	public static void initialize(JavaPlugin plugin){
+	public static void initialize(JavaPlugin plugin) {
 		pluginInstance = plugin;
 
 		pluginInstance.saveDefaultConfig();
@@ -16,13 +16,13 @@ public class ConfigManager {
 		load();
 	}
 
-	public static void reload(){
+	public static void reload() {
 		pluginInstance.reloadConfig();
 
 		load();
 	}
 
-	private static void load(){
+	private static void load() {
 		// Load strings
 		int stringsLoaded = 0;
 		String stringMapName = "strings";
@@ -32,13 +32,13 @@ public class ConfigManager {
 				mapArgStrings.put(k, new ArgString(pluginInstance.getConfig().getString(stringMapName + "." + k)));
 				stringsLoaded++;
 			}
+		} catch (Exception e) {
 		}
-		catch(Exception e){}
 
 		pluginInstance.getLogger().info("Loaded " + stringsLoaded + " strings.");
 	}
 
-	public static ArgString getArgString(String s){
+	public static ArgString getArgString(String s) {
 		return mapArgStrings.get(s);
 	}
 }
