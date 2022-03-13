@@ -1,5 +1,11 @@
 package com.itsmaxymoo.aliasshowtext;
 
+import com.itsmaxymoo.aliasshowtext.textfunction.GetDistance2D;
+import com.itsmaxymoo.aliasshowtext.textfunction.GetDistance3D;
+import com.itsmaxymoo.aliasshowtext.textfunction.InvalidSenderTypeException;
+import com.itsmaxymoo.aliasshowtext.textfunction.TextFunction;
+import org.bukkit.command.CommandSender;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,8 +16,10 @@ public class ArgString {
 		rawString = s;
 	}
 
-	public String getFormatted(String[] args) {
+	public String getFormatted(CommandSender sender, String[] args) {
 		String formattedString = rawString;
+
+		// *** Process args first
 
 		// Setup regex
 		Pattern patternArg = Pattern.compile("(\\{\\{ *[0-9]+ *}})");
@@ -33,6 +41,35 @@ public class ArgString {
 			if (argNum >= 0 && argNum < args.length) {
 				// Replace with argument
 				formattedString = formattedString.replace(match, args[argNum]);
+			}
+		}
+
+		// *** Process functions
+		TextFunction[] textFunctions = {
+				new GetDistance3D(),
+				new GetDistance2D()
+		};
+		for (TextFunction tf : textFunctions) {
+			// Get instances of command (outer regex)
+			Pattern outerRegex = Pattern.compile("\\{% *" + tf.getRegex() + " *%}");
+			Matcher matcherCommandInstances = outerRegex.matcher(formattedString);
+			while (matcherCommandInstances.find()) {
+				String match = matcherCommandInstances.group();
+				// Get inner regex
+				Matcher matcherInner = tf.getRegex().matcher(match);
+				matcherInner.find();
+
+				String innerMatch = matcherInner.group();
+
+				// Set result
+				String result = "";
+				try {
+					result = tf.compute(sender, innerMatch.trim().split("\\s+"));
+				} catch (InvalidSenderTypeException e) {
+					return "You must be a player!";
+				}
+
+				formattedString = formattedString.replace(match, result);
 			}
 		}
 

@@ -11,7 +11,7 @@ public class CommandShowString implements CommandExecutor {
 			ArgString aString = ConfigManager.getArgString(args[0]);
 
 			if (aString != null) {
-				sender.sendMessage(aString.getFormatted(args));
+				sender.sendMessage(aString.getFormatted(sender, args));
 
 				return true;
 			} else {

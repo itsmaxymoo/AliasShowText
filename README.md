@@ -28,7 +28,10 @@ Of course, `_showtext` supports [standard Minecraft formatting codes](https://mi
 
 The `_showstring` command will display to the user a string defined in the plugin's `config.yml` under the `strings` section.
 The config file can be reloaded at any time using the `aliasshowtext-reload` command (OP only or permission `aliasshowtext.reload`).
-Advanced strings have the advantage of supporting arguments. An example string in config.yml:
+
+### Arguments
+
+Arguments are only supported by `_showstring` and use a `{{ argument number }}` format. For example:
 
 ```yaml
 strings:
@@ -41,13 +44,35 @@ which would display `String name: argument-test, First argument: Apple` to the u
 Some things to note:
 
 * The 0th argument is always the string name
+* Arguments are processed before functions
 * Arguments follow the format `{{ n }}` where `n` is the number argument you wish to use
-* If you try to access an argument that does not exist, the `{{ n }}` tag will **not** be replaced.
+* If you try to access an argument that does not exist, the `{{ n }}` tag will **not** be replaced
+
+### Functions
+
+Functions are only supported by `_showstring` and use a `{% func_name arg1, arg2, etc... %}` format. For example:
+
+```yaml
+strings:
+  end: "End portal entrance: 1140, 117, 1808 ({% distance3d 1140 117 1801 %} blocks away)"
+```
+
+...will tell the user how far away they are from the server's end portal entrance.
+**Please remember,** arguments are processed before functions!
+This allows you to pass argument values as function parameters.
+
+#### Function List
+
+| **Function** | **Arguments** | **Usage**                                                                                                   |
+|--------------|---------------|-------------------------------------------------------------------------------------------------------------|
+| `distance3d` | num, num, num | Returns the user's distance from the specified position. Player only.                                       |
+| `distance2d` | num, num      | Returns the user's distance from the specified position, only considering X and Z coordinates. Player only. |
 
 ## To-Do
 
 * ~~Support for storing text strings in a seperate file~~
-	* ~~Allow server operator to reload strings at runtime~~
-	* ~~Allow text strings to support arguments~~
-* Support for special text functions
+    * ~~Allow server operator to reload strings at runtime~~
+    * ~~Allow text strings to support arguments~~
+* ~~Support for special text functions~~
 * Support for special cases (ex: joining the server)
+* Strict/non-strict mode: Allow certain functionality based off of a boolean setting (ex: functions in _showtext)
