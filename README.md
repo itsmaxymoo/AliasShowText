@@ -74,5 +74,7 @@ This allows you to pass argument values as function parameters.
     * ~~Allow server operator to reload strings at runtime~~
     * ~~Allow text strings to support arguments~~
 * ~~Support for special text functions~~
+    * Distance 2/3D int to float
+    * TextFunction vararg/generic arg
+    * verbosity based off of op/permission
 * Support for special cases (ex: joining the server)
-* Strict/non-strict mode: Allow certain functionality based off of a boolean setting (ex: functions in _showtext)
