@@ -50,13 +50,23 @@ public class ArgString {
 				new GetDistance2D()
 		};
 		for (TextFunction tf : textFunctions) {
+			// Assemble function regex string
+			StringBuilder functionRegexBuilder = new StringBuilder();
+			functionRegexBuilder.append("(")
+					.append(tf.getFunctionName())
+					.append(")");
+			for(int i = 0; i < tf.getNumberOfArguments(); i++){
+				functionRegexBuilder.append(" +-?[\\x21-\\x7E]+");
+			}
+			String tfRegex = functionRegexBuilder.toString();
+
 			// Get instances of command (outer regex)
-			Pattern outerRegex = Pattern.compile("\\{% *" + tf.getRegex() + " *%}");
+			Pattern outerRegex = Pattern.compile("\\{% *" + tfRegex + " *%}");
 			Matcher matcherCommandInstances = outerRegex.matcher(formattedString);
 			while (matcherCommandInstances.find()) {
 				String match = matcherCommandInstances.group();
 				// Get inner regex
-				Matcher matcherInner = tf.getRegex().matcher(match);
+				Matcher matcherInner = Pattern.compile(tfRegex).matcher(match);
 				matcherInner.find();
 
 				String innerMatch = matcherInner.group();

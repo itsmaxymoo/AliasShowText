@@ -3,12 +3,15 @@ package com.itsmaxymoo.aliasshowtext.textfunction;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.regex.Pattern;
-
 public class GetDistance3D extends TextFunction {
 	@Override
-	public Pattern getRegex() {
-		return Pattern.compile("(distance3d) +-?[0-9]+ +-?[0-9]+ +-?[0-9]+");
+	public short getNumberOfArguments() {
+		return 3;
+	}
+
+	@Override
+	public String getFunctionName() {
+		return "distance3d";
 	}
 
 	@Override

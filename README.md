@@ -74,7 +74,9 @@ This allows you to pass argument values as function parameters.
     * ~~Allow server operator to reload strings at runtime~~
     * ~~Allow text strings to support arguments~~
 * ~~Support for special text functions~~
-    * Distance 2/3D int to float
-    * TextFunction vararg/generic arg
+    * ~~Distance 2/3D int to float (CANCELLED)~~
+    * ~~TextFunction vararg/generic arg~~
     * verbosity based off of op/permission
+* Convert reload command to generic admin command
+    * Command to list all strings
 * Support for special cases (ex: joining the server)
