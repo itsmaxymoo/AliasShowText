@@ -10,8 +10,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ArgString {
-	private String rawString;
+	private final static TextFunction[] textFunctions = {
+			new GetDistance3D(),
+			new GetDistance2D()
+	};
 
+	private final String rawString;
 	public ArgString(String s) {
 		rawString = s;
 	}
@@ -20,7 +24,6 @@ public class ArgString {
 		String formattedString = rawString;
 
 		// *** Process args first
-
 		// Setup regex
 		Pattern patternArg = Pattern.compile("(\\{\\{ *[0-9]+ *}})");
 		Pattern patternArgNumber = Pattern.compile("[0-9]+");
@@ -45,36 +48,22 @@ public class ArgString {
 		}
 
 		// *** Process functions
-		TextFunction[] textFunctions = {
-				new GetDistance3D(),
-				new GetDistance2D()
-		};
-		for (TextFunction tf : textFunctions) {
-			// Assemble function regex string
-			StringBuilder functionRegexBuilder = new StringBuilder();
-			functionRegexBuilder.append("(")
-					.append(tf.getFunctionName())
-					.append(")");
-			for(int i = 0; i < tf.getNumberOfArguments(); i++){
-				functionRegexBuilder.append(" +-?[\\x21-\\x7E]+");
-			}
-			String tfRegex = functionRegexBuilder.toString();
-
+		for (TextFunction textFunction : textFunctions) {
 			// Get instances of command (outer regex)
-			Pattern outerRegex = Pattern.compile("\\{% *" + tfRegex + " *%}");
+			Pattern outerRegex = textFunction.getOuterPattern();
 			Matcher matcherCommandInstances = outerRegex.matcher(formattedString);
 			while (matcherCommandInstances.find()) {
 				String match = matcherCommandInstances.group();
 				// Get inner regex
-				Matcher matcherInner = Pattern.compile(tfRegex).matcher(match);
+				Matcher matcherInner = textFunction.getInnerPattern().matcher(match);
 				matcherInner.find();
 
 				String innerMatch = matcherInner.group();
 
 				// Set result
-				String result = "";
+				String result;
 				try {
-					result = tf.compute(sender, innerMatch.trim().split("\\s+"));
+					result = textFunction.compute(sender, innerMatch.trim().split("\\s+"));
 				} catch (InvalidSenderTypeException e) {
 					return "You must be a player!";
 				}

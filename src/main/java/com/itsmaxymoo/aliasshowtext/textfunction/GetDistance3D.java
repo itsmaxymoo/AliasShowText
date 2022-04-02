@@ -5,12 +5,12 @@ import org.bukkit.entity.Player;
 
 public class GetDistance3D extends TextFunction {
 	@Override
-	public short getNumberOfArguments() {
+	protected int getNumberOfArguments() {
 		return 3;
 	}
 
 	@Override
-	public String getFunctionName() {
+	protected String getFunctionName() {
 		return "distance3d";
 	}
 
