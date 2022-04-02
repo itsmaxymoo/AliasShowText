@@ -1,9 +1,6 @@
 package com.itsmaxymoo.aliasshowtext;
 
-import com.itsmaxymoo.aliasshowtext.textfunction.GetDistance2D;
-import com.itsmaxymoo.aliasshowtext.textfunction.GetDistance3D;
-import com.itsmaxymoo.aliasshowtext.textfunction.InvalidSenderTypeException;
-import com.itsmaxymoo.aliasshowtext.textfunction.TextFunction;
+import com.itsmaxymoo.aliasshowtext.textfunction.*;
 import org.bukkit.command.CommandSender;
 
 import java.util.regex.Matcher;
@@ -12,10 +9,14 @@ import java.util.regex.Pattern;
 public class ArgString {
 	private final static TextFunction[] textFunctions = {
 			new GetDistance3D(),
-			new GetDistance2D()
+			new GetDistance2D(),
+			new GetPlayerX(),
+			new GetPlayerY(),
+			new GetPlayerZ()
 	};
 
 	private final String rawString;
+
 	public ArgString(String s) {
 		rawString = s;
 	}
