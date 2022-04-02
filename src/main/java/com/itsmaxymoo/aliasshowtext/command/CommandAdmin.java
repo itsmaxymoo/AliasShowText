@@ -1,5 +1,6 @@
-package com.itsmaxymoo.aliasshowtext;
+package com.itsmaxymoo.aliasshowtext.command;
 
+import com.itsmaxymoo.aliasshowtext.ConfigManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

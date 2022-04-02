@@ -1,4 +1,4 @@
-package com.itsmaxymoo.aliasshowtext;
+package com.itsmaxymoo.aliasshowtext.command;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

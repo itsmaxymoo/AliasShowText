@@ -24,14 +24,23 @@ aliases:
 
 Of course, `_showtext` supports [standard Minecraft formatting codes](https://minecraft.fandom.com/wiki/Formatting_codes).
 
-### Advanced Strings
+### Strings
 
 The `_showstring` command will display to the user a string defined in the plugin's `config.yml` under the `strings` section.
-The config file can be reloaded at any time using the `aliasshowtext-reload` command (OP only or permission `aliasshowtext.reload`).
+The config file can be reloaded at any time using the `aliasshowtext reload` command (OP only or permission `aliasshowtext.admin`).
+A list of loaded strings can be displayed with the command `aliasshowtext list`.
 
-### Arguments
+#### Special Strings
 
-Arguments are only supported by `_showstring` and use a `{{ argument number }}` format. For example:
+There are some predefined strings that have special behaviors.
+
+| String Name | Behavior                                        |
+|-------------|-------------------------------------------------|
+| `_onjoin`   | String to be displayed to any player that joins |
+
+#### Arguments
+
+Arguments are only supported by strings and use a `{{ argument number }}` format. For example:
 
 ```yaml
 strings:
@@ -48,9 +57,9 @@ Some things to note:
 * Arguments follow the format `{{ n }}` where `n` is the number argument you wish to use
 * If you try to access an argument that does not exist, the `{{ n }}` tag will **not** be replaced
 
-### Functions
+#### Functions
 
-Functions are only supported by `_showstring` and use a `{% func_name arg1, arg2, etc... %}` format. For example:
+Functions are only supported by strings and use a `{% func_name arg1 arg2 etc... %}` format. For example:
 
 ```yaml
 strings:
@@ -61,7 +70,7 @@ strings:
 **Please remember,** arguments are processed before functions!
 This allows you to pass argument values as function parameters.
 
-#### Function List
+##### Function List
 
 | **Function** | **Arguments** | **Usage**                                                                                                   |
 |--------------|---------------|-------------------------------------------------------------------------------------------------------------|
@@ -70,8 +79,3 @@ This allows you to pass argument values as function parameters.
 | `playerX`    |               | Returns the user's X position. Player only.                                                                 |
 | `playerY`    |               | Returns the user's Y position. Player only.                                                                 |
 | `playerZ`    |               | Returns the user's Z position. Player only.                                                                 |
-
-## To-Do
-
-* verbosity based off of op/permission
-* Support for special cases (ex: joining the server)

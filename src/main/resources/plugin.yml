@@ -13,10 +13,10 @@ commands:
     permission: aliasshowtext.admin
   _showtext:
     description: ""
-    usage: "Consult documentation"
+    usage: ""
   _showstring:
     description: ""
-    usage: "Consult documentation"
+    usage: ""
 
 permissions:
   aliasshowtext.admin:
