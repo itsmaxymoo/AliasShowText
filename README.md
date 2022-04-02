@@ -67,16 +67,11 @@ This allows you to pass argument values as function parameters.
 |--------------|---------------|-------------------------------------------------------------------------------------------------------------|
 | `distance3d` | num, num, num | Returns the user's distance from the specified position. Player only.                                       |
 | `distance2d` | num, num      | Returns the user's distance from the specified position, only considering X and Z coordinates. Player only. |
+| `playerX`    |               | Returns the user's X position. Player only.                                                                 |
+| `playerY`    |               | Returns the user's Y position. Player only.                                                                 |
+| `playerZ`    |               | Returns the user's Z position. Player only.                                                                 |
 
 ## To-Do
 
-* ~~Support for storing text strings in a seperate file~~
-    * ~~Allow server operator to reload strings at runtime~~
-    * ~~Allow text strings to support arguments~~
-* ~~Support for special text functions~~
-    * ~~Distance 2/3D int to float (CANCELLED)~~
-    * ~~TextFunction vararg/generic arg~~
-    * verbosity based off of op/permission
-* Convert reload command to generic admin command
-    * Command to list all strings
+* verbosity based off of op/permission
 * Support for special cases (ex: joining the server)

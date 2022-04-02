@@ -3,6 +3,7 @@ package com.itsmaxymoo.aliasshowtext;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class ConfigManager {
 	private static JavaPlugin pluginInstance;
@@ -40,5 +41,9 @@ public class ConfigManager {
 
 	public static ArgString getArgString(String s) {
 		return mapArgStrings.get(s);
+	}
+
+	public static Set<String> getLoadedStringNames() {
+		return mapArgStrings.keySet();
 	}
 }

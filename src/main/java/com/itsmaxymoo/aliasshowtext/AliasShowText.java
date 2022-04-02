@@ -12,7 +12,7 @@ public final class AliasShowText extends JavaPlugin {
 		ConfigManager.initialize(this);
 
 		// Register commands
-		getCommand("aliasshowtext-reload").setExecutor(new CommandReloadPluginConfig());
+		getCommand("aliasshowtext").setExecutor(new CommandAdmin());
 		getCommand("_showtext").setExecutor(new CommandShowText());
 		getCommand("_showstring").setExecutor(new CommandShowString());
 	}
